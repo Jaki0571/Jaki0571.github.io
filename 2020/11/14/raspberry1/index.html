@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="需要的设备：树莓派4B鼠标（有线无线都可以）键盘（有线无线都可以）TF卡（尽量大于16GB）TF卡读卡器micro-HDMI视频线5V 3A type-c电源线支持HDMI输入的显示器（大部分电视都支持） 教程开始 First下载系统镜像如果你是一位新手，我十分建议你使用Raspberry官方基于Debian开发的Raspberry Pi OS，它理所应当是在树莓派上运行最稳定的系统  你会发现这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树莓派初步配置">
+<meta property="og:url" content="http://example.com/2020/11/14/raspberry1/index.html">
+<meta property="og:site_name" content="Jaki的部落格">
+<meta property="og:description" content="需要的设备：树莓派4B鼠标（有线无线都可以）键盘（有线无线都可以）TF卡（尽量大于16GB）TF卡读卡器micro-HDMI视频线5V 3A type-c电源线支持HDMI输入的显示器（大部分电视都支持） 教程开始 First下载系统镜像如果你是一位新手，我十分建议你使用Raspberry官方基于Debian开发的Raspberry Pi OS，它理所应当是在树莓派上运行最稳定的系统  你会发现这">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/1.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/3.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/4.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/5.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/6.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/8.jpg">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/9.PNG">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/11.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/12.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/13.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/10.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/23.PNG">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/14.png">
+<meta property="og:image" content="http://example.com/2020/11/14/raspberry1/15.png">
+<meta property="article:published_time" content="2020-11-14T01:33:22.000Z">
+<meta property="article:modified_time" content="2020-11-14T04:06:43.485Z">
+<meta property="article:author" content="Jacky">
+<meta property="article:tag" content="RaspberryPi">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/11/14/raspberry1/1.png">
+
+<link rel="canonical" href="http://example.com/2020/11/14/raspberry1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>树莓派初步配置 | Jaki的部落格</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Jaki的部落格</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">乐于分享</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/11/14/raspberry1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Jacky">
+      <meta itemprop="description" content="干啥啥不行，建站第一名Σ( ° △ °|||)︴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jaki的部落格">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          树莓派初步配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-11-14 09:33:22 / Modified: 12:06:43" itemprop="dateCreated datePublished" datetime="2020-11-14T09:33:22+08:00">2020-11-14</time>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Changyan: </span>
+    
+    
+      <a title="changyan" href="/2020/11/14/raspberry1/#SOHUCS" itemprop="discussionUrl">
+        <span id="changyan_count_unit" class="post-comments-count hc-comment-count" data-xid="2020/11/14/raspberry1/" itemprop="commentCount"></span>
+      </a>
+    
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>需要的设备：<br>树莓派4B<br>鼠标（有线无线都可以）<br>键盘（有线无线都可以）<br>TF卡（尽量大于16GB）<br>TF卡读卡器<br>micro-HDMI视频线<br>5V 3A type-c电源线<br>支持HDMI输入的显示器（大部分电视都支持）</p>
+<p>教程开始</p>
+<h2 id="First"><a href="#First" class="headerlink" title="First"></a>First</h2><h3 id="下载系统镜像"><a href="#下载系统镜像" class="headerlink" title="下载系统镜像"></a>下载系统镜像</h3><p>如果你是一位新手，我十分建议你使用Raspberry官方基于Debian开发的Raspberry Pi OS，它理所应当是在树莓派上运行最稳定的系统</p>
+<p><img src="/2020/11/14/raspberry1/1.png" alt="系统下载官网"></p>
+<p>你会发现这里提供了三个镜像文件，我推荐使用第二个（Raspberry Pi OS with desktop）因为它既有令人熟悉的UI界面，又不失精简<br>请点击<a target="_blank" rel="noopener" href="https://www.raspberrypi.org/software/operating-systems/">此处</a>前往下载</p>
+<h3 id="烧录系统镜像"><a href="#烧录系统镜像" class="headerlink" title="烧录系统镜像"></a>烧录系统镜像</h3><p>我使用Raspberry官方推出的镜像烧录软件Raspberry Pi Imager<br>请点击合适的设备进行下载并安装<br><a target="_blank" rel="noopener" href="https://downloads.raspberrypi.org/imager/imager_1.4.exe">Windows</a><br><a target="_blank" rel="noopener" href="https://downloads.raspberrypi.org/imager/imager_1.4.dmg">Mac OS</a><br><a target="_blank" rel="noopener" href="https://downloads.raspberrypi.org/imager/imager_1.4_amd64.deb">Ubuntu</a></p>
+<p>安装完成后请先不要作任何的操作，请先找到刚刚下载的系统镜像，右击，使用Raspberry Pi Imager打开</p>
+<p><img src="/2020/11/14/raspberry1/3.png" alt="选择打开方式"></p>
+<p>这时你会发现在Operating System选项下已经变成了你刚刚下载好的系统镜像zip文件了，现在，你可以插上TF卡，并且在SD Card选项下选择你的TF卡储存设备，待准备就绪后，点击WRITE开始烧录</p>
+<p><img src="/2020/11/14/raspberry1/4.png" alt="准备烧录"><br><img src="/2020/11/14/raspberry1/5.png" alt="正在烧录"></p>
+<p>等待一会儿，出现下图时表示你已经烧录成功了</p>
+<p><img src="/2020/11/14/raspberry1/6.png" alt="烧录成功"></p>
+<p>现在你可以移除你的TF卡，并插入树莓派了</p>
+<h2 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h2><h3 id="配置系统"><a href="#配置系统" class="headerlink" title="配置系统"></a>配置系统</h3><p>现在请将树莓派通过micro-HDMI视频线连接显示器，并接通电源，观察树莓派是否有红灯和绿灯亮起，如果有，则表示树莓派开始开机了，等待一会儿，你就能看见画面了</p>
+<p><img src="/2020/11/14/raspberry1/8.jpg" alt="开机"></p>
+<p>系统初始化设置很简单，按照你希望的方式进行设置，我相信你可以顺利的完成<br>不过，值得注意的是，我不建议你在配置的过程中连接网络，而是等进入桌面后再连接，因为Debian的软件包服务器在国外，我们需要先更改一下镜像源，然后进行系统更新，具体操作我后面会说</p>
+<p>配置系统不需要花太多的时间，你应该已经可以进入桌面了，现在你可以连接你的网络了，点击右上角的信号图标，连接一个无线网络，或者你也可以直接使用网线连接</p>
+<h3 id="远程连接桌面"><a href="#远程连接桌面" class="headerlink" title="远程连接桌面"></a>远程连接桌面</h3><p>我知道你不希望每天搬一个比树莓派还大很多的显示器吧，这已经失去了树派的初衷了，所以，现在我们来使用其它移动设备进行远程管理</p>
+<p>首先，请点击左上角的树莓派图标，这有点类似与Windows的开始菜单，然后进行“首选项 &gt; Raspberry Pi Configuration &gt; Interfaces”，将SSH和VNC改成Enable，然后保存即可</p>
+<p><img src="/2020/11/14/raspberry1/9.PNG" alt="SSH和VNC"></p>
+<p>现在，你可以拿出一台移动设备，无论是平板，电脑还是手机都可以，然后前往<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/">这里</a>下载并安装RealVNC</p>
+<p><img src="/2020/11/14/raspberry1/11.png" alt="下载VNC"></p>
+<p>打开后，你需要添加一个新的连接，下面我以Windows为例，其它设备也大同小异</p>
+<p>首先在左上角进行“File &gt; New connection…”（IOS设备点击右上角的一个蓝色加号，Android设备点击右下角的一个绿色加号）</p>
+<p><img src="/2020/11/14/raspberry1/12.png" alt="添加新连接"></p>
+<p>在弹出的窗口中，在VNC Server一栏填入树莓派的IP地址</p>
+<p><img src="/2020/11/14/raspberry1/13.png" alt="填入IP"></p>
+<p>如果你不知到树莓派的IP地址，你可以在树莓派的系统中，将光标移到WIFI图标上，然后你就可以看到WIFI的名称和IP地址了，IP地址的形式往往是192.168.X(X).XXX</p>
+<p><img src="/2020/11/14/raspberry1/10.png" alt="IP地址"></p>
+<p>除此之外，你也可以前往路由器后台查看树莓派的IP地址，这里我就不多赘述</p>
+<p>填写完成后，不需要更改其它设置，直接点击OK</p>
+<p>不过，需要注意的是，对于触摸屏设备，我们需要将Interaction更改为Touch panel</p>
+<p><img src="/2020/11/14/raspberry1/23.PNG" alt="interaction"></p>
+<p>然后，你会发现主页上多出了一个客户机，双击它，弹出一个窗口让你填入用户名和密码<br>树莓派的默认用户名和密码分别是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pi</span><br><span class="line">raspberry</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/11/14/raspberry1/14.png" alt="用户名和密码"></p>
+<p>确保无误后，勾选Remember password，点击OK，下次你就不需要输入密码了<br>现在你应该就能看到树莓派的桌面了</p>
+<p><img src="/2020/11/14/raspberry1/15.png" alt="连接成功"></p>
+<p>未完待续…</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/RaspberryPi/" rel="tag"># RaspberryPi</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/10/31/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" rel="prev" title="我的第一篇博客">
+      <i class="fa fa-chevron-left"></i> 我的第一篇博客
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="SOHUCS"></div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#First"><span class="nav-number">1.</span> <span class="nav-text">First</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="nav-number">1.1.</span> <span class="nav-text">下载系统镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%A7%E5%BD%95%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F"><span class="nav-number">1.2.</span> <span class="nav-text">烧录系统镜像</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Second"><span class="nav-number">2.</span> <span class="nav-text">Second</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F"><span class="nav-number">2.1.</span> <span class="nav-text">配置系统</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%A1%8C%E9%9D%A2"><span class="nav-number">2.2.</span> <span class="nav-text">远程连接桌面</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Jacky"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Jacky</p>
+  <div class="site-description" itemprop="description">干啥啥不行，建站第一名Σ( ° △ °|||)︴</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">tags</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jacky</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  <script>
+  NexT.utils.loadComments(document.querySelector('#SOHUCS'), () => {
+    var appid = 'cyv8mbD32';
+    var conf = 'bd0aa77aaf28b80e5fade1b6b668f58a';
+    var width = window.innerWidth || document.documentElement.clientWidth;
+    if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+    } else {
+      var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})});
+    }
+  });
+  </script>
+  <script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+
+</body>
+</html>
