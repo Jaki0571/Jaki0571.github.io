@@ -19,10 +19,18 @@
 ]]></content>
   </entry>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/2020/10/31/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>hi，你好，这是我的第一篇博客，很高兴能认识你！</p>
+]]></content>
+  </entry>
+  <entry>
     <title>树莓派初步配置</title>
     <url>/2020/11/14/raspberry1/</url>
     <content><![CDATA[<p>需要的设备：<br>树莓派4B<br>鼠标（有线无线都可以）<br>键盘（有线无线都可以）<br>TF卡（尽量大于16GB）<br>TF卡读卡器<br>micro-HDMI视频线<br>5V 3A type-c电源线<br>支持HDMI输入的显示器（大部分电视都支持）</p>
 <p>教程开始</p>
+<a id="more"></a>
+
 <h2 id="First"><a href="#First" class="headerlink" title="First"></a>First</h2><h3 id="下载系统镜像"><a href="#下载系统镜像" class="headerlink" title="下载系统镜像"></a>下载系统镜像</h3><p>如果你是一位新手，我十分建议你使用Raspberry官方基于Debian开发的Raspberry Pi OS，它理所应当是在树莓派上运行最稳定的系统</p>
 <p><img src="/2020/11/14/raspberry1/1.png" alt="系统下载官网"></p>
 <p>你会发现这里提供了三个镜像文件，我推荐使用第二个（Raspberry Pi OS with desktop）因为它既有令人熟悉的UI界面，又不失精简<br>请点击<a href="https://www.raspberrypi.org/software/operating-systems/">此处</a>前往下载</p>
@@ -64,11 +72,5 @@
       <tags>
         <tag>RaspberryPi</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/2020/10/31/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>hi，你好，这是我的第一篇博客，很高兴能认识你！</p>
-]]></content>
   </entry>
 </search>
