@@ -67,7 +67,71 @@
 <p><img src="/2020/11/14/raspberry1/14.png" alt="用户名和密码"></p>
 <p>确保无误后，勾选Remember password，点击OK，下次你就不需要输入密码了<br>现在你应该就能看到树莓派的桌面了</p>
 <p><img src="/2020/11/14/raspberry1/15.png" alt="连接成功"></p>
-<p>未完待续…</p>
+<h3 id="修改分辨率"><a href="#修改分辨率" class="headerlink" title="修改分辨率"></a>修改分辨率</h3><p>现在，你已经可以远程连接树莓派了，但是你有可能会发现在你的手机，平板或者电脑上显示的分辨率并不适合，字体可能会特别小或者看不清，这时你需要修改树莓派的分辨率，使它适应你的移动显示器</p>
+<p>首先，点击左上角树莓派图标，进行“首选项 &gt; Screen Configuration”，在弹出的窗口中进行“Configure &gt; Screens &gt; HDMI-1(有可能不一样，具体选择你接入显示器的端口名称）&gt; 分辨率”，然后选择一个合适的分辨率即可<br>选择完毕后点击窗口左上角的绿色对勾应用</p>
+<p>注意，在每次更改前，建议使用Micro-HDMI视频线连接一个外接显示器，否则可能无法正常弹出设置窗口</p>
+<p><img src="/2020/11/14/raspberry1/16.PNG" alt="开始设置分辨率"></p>
+<p><img src="/2020/11/14/raspberry1/17.PNG" alt="继续设置分辨率"></p>
+<h3 id="更改镜像源"><a href="#更改镜像源" class="headerlink" title="更改镜像源"></a>更改镜像源</h3><p>现在硬件上的设置已经完成了，我们来进行最后一步软件上的配置——更改镜像源，从而提高软件下载速度</p>
+<p>首先打开终端，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo nano /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
+<p>将里面的内容改成</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#deb http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br><span class="line"><span class="comment"># Uncomment line below then &#x27;apt-get update&#x27; to enable &#x27;apt-get source&#x27;</span></span><br><span class="line"><span class="comment">#deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free rpi</span></span><br><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>修改完成后“ctrl+o”&gt;“enter回车”&gt;“ctrl+x”保存并退出</p>
+<p>我是使用清华大学镜像源，如果你是中国大陆用户，你可以直接复制上方内容，当然，你也可以自行选择一个离你最近的镜像站，你可以前往<a href="http://www.raspbian.org/RaspbianMirrors/">这里</a>查看所有镜像的列表</p>
+<p>选择好服务器后，将</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>和</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb-src https://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi</span><br></pre></td></tr></table></figure>
+<p>中的</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">https://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/</span><br></pre></td></tr></table></figure>
+<p>改成你选择的服务器地址即可</p>
+<p><img src="/2020/11/14/raspberry1/18.png" alt="更改第一个配置文件"></p>
+<p>然后继续在终端里输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo nano /etc/apt/sources.list.d/raspi.list</span><br></pre></td></tr></table></figure>
+<p>将里面的内容改成</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment">#deb http://archive.raspberrypi.org/debian/ buster main</span></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br><span class="line"><span class="comment"># Uncomment line below then &#x27;apt-get update&#x27; to enable &#x27;apt-get source&#x27;</span></span><br><span class="line"><span class="comment">#deb-src http://archive.raspberrypi.org/debian/ buster main</span></span><br></pre></td></tr></table></figure>
+
+<p>与之前的一样，你可以直接复制我上方的内容，也可以自己从镜像列表里选择一个离你最近的一个服务器，将</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/ buster main</span><br></pre></td></tr></table></figure>
+<p>中的</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">http://mirrors.tuna.tsinghua.edu.cn/raspberrypi/</span><br></pre></td></tr></table></figure>
+<p>改成你选择的服务器地址即可</p>
+<p><img src="/2020/11/14/raspberry1/19.png" alt="更改第二个配置文件"></p>
+<p>当上面两个配置文件都修改完成后，我们只需要更新一下本地缓存即可</p>
+<p>在终端中输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+<p>回车，等待完成</p>
+<p><img src="/2020/11/14/raspberry1/20.png" alt="update"></p>
+<p>然后继续在终端输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+<p>回车，等待完成即可</p>
+<p><img src="/2020/11/14/raspberry1/21.png" alt="upgrade"></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>@记，博客感想</p>
+<p>呼~终于结束了…等等！真的结束了吗？</p>
+<p>不！你的树莓派之旅才刚刚开始！</p>
+<p>我很高兴你能看到这里，</p>
+<p>也很希望这篇文章能成为你进入派世界的一把钥匙，</p>
+<p>我和你一样，</p>
+<p>一个小白，</p>
+<p>比漂白剂还白，</p>
+<p>对派世界一无所知，</p>
+<p>但又充满向往，</p>
+<p>我在迷雾中寻找前进的方向，</p>
+<p>这条路坎坷不平，</p>
+<p>但幸好，</p>
+<p>有前者默默作下了记号，</p>
+<p>感谢他们给我的指导，</p>
+<p>让我走得顺利不少，</p>
+<p>当然，</p>
+<p>这里不免还有一些遗漏的地方，</p>
+<p>有大有小，</p>
+<p>那么现在，</p>
+<p>就让我，</p>
+<p>还有屏幕前的你们，</p>
+<p>一起将这些遗漏的地方补好，</p>
+<p>派世界，</p>
+<p>由我们一起打造！</p>
 ]]></content>
       <tags>
         <tag>RaspberryPi</tag>
