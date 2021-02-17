@@ -19,12 +19,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>我的第一篇博客</title>
-    <url>/2020/10/31/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>hi，你好，这是我的第一篇博客，很高兴能认识你！</p>
-]]></content>
-  </entry>
-  <entry>
     <title>树莓派初步配置</title>
     <url>/2020/11/14/raspberry1/</url>
     <content><![CDATA[<p>需要的设备：<br>树莓派4B<br>鼠标（有线无线都可以）<br>键盘（有线无线都可以）<br>TF卡（尽量大于16GB）<br>TF卡读卡器<br>micro-HDMI视频线<br>5V 3A type-c电源线<br>支持HDMI输入的显示器（大部分电视都支持）</p>
@@ -136,5 +130,102 @@
       <tags>
         <tag>RaspberryPi</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>使用树莓派搭建一个个人广播站</title>
+    <url>/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/</url>
+    <content><![CDATA[<h1 id="请遵循中华人民共和国无线电管理条例！"><a href="#请遵循中华人民共和国无线电管理条例！" class="headerlink" title="请遵循中华人民共和国无线电管理条例！"></a>请遵循中华人民共和国无线电管理条例！</h1><p>需要的设备：<br>树莓派4B<br>杜邦线<br>电脑</p>
+<p>教程开始</p>
+<a id="more"></a>
+
+<h2 id="First"><a href="#First" class="headerlink" title="First"></a>First</h2><h3 id="克隆GitHub上的项目"><a href="#克隆GitHub上的项目" class="headerlink" title="克隆GitHub上的项目"></a>克隆GitHub上的项目</h3><p>首先打开终端，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<p>要记住，在所有项目开始之前，你都需要更新软件仓库</p>
+<p>更新完成后，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/1.png" alt="安装git可以帮助你从GitHub上克隆文件"></p>
+<p>现在，在终端里输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/F5OEO/rpitx</span><br></pre></td></tr></table></figure>
+
+<p>开始克隆rpitx项目</p>
+<p>​    <em>rpitx项目可以让树莓派发射从5 KHz到1500 MHz之间的广播信号，从而搭建一个私人广播站</em><br>开发者的介绍<br>​    <em>rpitx is a general radio frequency transmitter for Raspberry Pi which doesn’t require any other hardware unless filter to avoid intererence. It can handle frequencies from 5 KHz up to 1500 MHz.</em></p>
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/2.png" alt="克隆文件到本地"></p>
+<p>由于GitHub服务器在国外，所以克隆时间会比较长，耐心等待即可，如果卡住可以试试”Ctrl+C”终止然后重新克隆</p>
+<p>克隆完成后，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> rpitx</span><br></pre></td></tr></table></figure>
+
+<p>将终端目录转至rpitx</p>
+<p>然后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./install.sh</span><br></pre></td></tr></table></figure>
+
+<p>运行自动安装脚本<br>该安装过程依旧需要连接国外服务器，时间可能会比较长，请耐心等待</p>
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/4.png" alt="完成安装过程"></p>
+<p>在安装最后，会提示是否允许修改 /boot/config.txt，输入”y”并回车即可</p>
+<p>现在已经安装完成了，最后输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo reboot</span><br></pre></td></tr></table></figure>
+
+<p>进行重启</p>
+<h2 id="Second"><a href="#Second" class="headerlink" title="Second"></a>Second</h2><h3 id="向世界发声"><a href="#向世界发声" class="headerlink" title="向世界发声"></a>向世界发声</h3><p>激动人心的时刻到了，让我们来测试一下树莓派是否可以发射广播信号</p>
+<p>打开终端，输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> rpitx</span><br></pre></td></tr></table></figure>
+
+<p>让终端在 /rpitx 目录下运行，这个目录包含树莓派发射广播信号的所有文件</p>
+<p>然后继续输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">./easytest.sh</span><br></pre></td></tr></table></figure>
+
+<p>这是作者提供的一个测试脚本，输入后，你的终端应该会出现下图样式</p>
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/5.png" alt="测试界面"></p>
+<p>由于434 MHz不是一个标准的FM频率，即使我们可以通过其他方式来接收，但本教程主要针对FM广播的发射，所以我们可以更改这个数值，比如85，只要不要占用当地已有的广播频率即可</p>
+<p>输入频率后回车，我们会进入一个新的页面，请用方向键将光标移动到第四项，FmRds</p>
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/6.png" alt="选择FmRds"></p>
+<p>选中后回车，你会看到如下界面</p>
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/7.png" alt="开始发射"></p>
+<p>现在，就拿出你的收音机，调到你刚刚设定的频率，然后靠近树莓派，仔细听，是不是有声音了，如果有，那么恭喜你，你已经成功配置好了你的树莓派，可以正常播音了！</p>
+<p>你现在是不是发现，树莓派发出的信号特别的小，稍微离远一点就收不到信号了？现在，请拿出一根杜邦线，插在树莓派的GPIO 4引脚（图中7号引脚）</p>
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/8.png" alt="引脚参照表"></p>
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/9.jpg" alt="实拍图"></p>
+<p>好了，现在你在听听看，是不是信号好了很多？在家里逛一圈，是不是基本上都能听到声音啦！</p>
+<p>但是，现在树莓派一直在播送测试音频，那么我们应该怎样播放自己想要的声音呢，现在，请向树莓派内导入一段.wav格式的音频，将其放在 /home/pi/rpitx 目录下，然后在当前文件夹下运行终端，怎样在当前目录运行终端？请在终端内输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> rpitx</span><br></pre></td></tr></table></figure>
+
+<p>一定要记住了！之后的大部分命令都需要在当前目录下运行！后面我就不再重复说明了</p>
+<p>现在请按照以下模板输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ./pifmrds -freq [frequency] -audio [filename.wav]</span><br></pre></td></tr></table></figure>
+
+<p>比如，我想在85 MHz播送名为q.wav的音频文件，那么我应该输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo ./pifmrds -freq 85 -audio q.wav</span><br></pre></td></tr></table></figure>
+
+<p>当你在终端最后一行看到</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">Starting to transmit on XX MHz.（XX表明你使用的频率）</span><br></pre></td></tr></table></figure>
+
+<p>表明树莓派已经开始进行广播了，你可以使用收音机去接收了</p>
+<h3 id="一个小问题"><a href="#一个小问题" class="headerlink" title="一个小问题"></a>一个小问题</h3><p>如果你向播送的音频不是.wav格式该怎么办呢？我为你提供两种解决方法</p>
+<h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>使用格式转换工具（方便，但不是一个长久的方法）<br>无论是在线还是软件都可以，在网络上搜索音频转换就会有一大堆工具，选择一个有缘的用就好，只要保证最后的格式是.wav即可</p>
+<h4 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h4><p>使用SoX工具（需要额外安装且命令语法较为复杂，但是无需单独转换文件，可以直接在树莓派上播送）<br>在树莓派终端中输入</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">sudo apt-get install sox libsox-fmt-all</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2021/02/17/%E4%BD%BF%E7%94%A8%E6%A0%91%E8%8E%93%E6%B4%BE%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%AA%E4%BA%BA%E5%B9%BF%E6%92%AD%E7%AB%99/10.png" alt="安装SoX"></p>
+<p>现在，在 /rpitx 目录下运行终端，输入以下模板</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sox -t [format] [filename.format] -t wav -  | sudo ./pifmrds -freq XX -audio -</span><br></pre></td></tr></table></figure>
+
+<p>比如，我想在85 MHz频率上播放1.mp3文件，那么我应该输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sox -t mp3 1.mp3 -t wav -  | sudo ./pifmrds -freq 85 -audio -</span><br></pre></td></tr></table></figure>
+
+<p>非常建议你复制上面这串命令然后部分修改而不是手打，因为这非常容易输错！</p>
+<p>正常情况下，你的音频可以正常播送，如果失败可能是原格式不支持，SoX目前支持的格式有：AU, WAV, AIFF, MP3 , Ogg Vorbis, FLAC</p>
+<h2 id="告一段落"><a href="#告一段落" class="headerlink" title="告一段落"></a>告一段落</h2><p>本期教程到这里就结束了，但是这只是最最基础的一些功能，下期教程，我将教大家如何实时播送电脑的声音以及自己的声音，让你成为一名真正的DJ！敬请期待吧！</p>
+<p>目前学业繁忙，更新不会太快，非常抱歉，呜呜~</p>
+]]></content>
+      <tags>
+        <tag>RaspberryPi</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/2020/10/31/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>hi，你好，这是我的第一篇博客，很高兴能认识你！</p>
+]]></content>
   </entry>
 </search>
